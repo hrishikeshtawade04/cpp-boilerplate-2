@@ -10,10 +10,27 @@
 
 ## Overview
 
-Simple starter C++ project with:
+Simple PID Controller C++ project with:
 
 - cmake
 - googletest
+
+## UML Diagrams
+
+- Class Diagram
+<p align="center">
+<a target="_blank"><img src="UML_Cpp-Boilerplate .png" 
+alt="NMPC" width="480" height="360" border="10" />
+</a>
+</p>
+
+- Activity Diagram for compute function
+<p align="center">
+<a target="_blank"><img src="Compute_function_activity_diagram.png" 
+alt="NMPC" width="480" height="640" border="10" />
+</a>
+</p>
+
 
 ## Standard install via command-line
 ```
