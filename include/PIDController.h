@@ -1,14 +1,14 @@
 /**
  *  @file  PIDController.h
  *  @copyright Copyright 2018
- *  @brief
+ *  @brief defines members, attributes, constructor and destructor ofPIDController class
  *  Created on: Sep 22, 2018
  *  @author: Saurav Kumar
- *  @author Hrikesh Tawade
+ *  @author Hrishikesh Tawade
  */
 
-#ifndef INCLUDE_PIDCONTROLLER_H_
-#define INCLUDE_PIDCONTROLLER_H_
+#ifndef HW3_CPP_BOILERPLATE_INCLUDE_PIDCONTROLLER_H_
+#define HW3_CPP_BOILERPLATE_INCLUDE_PIDCONTROLLER_H_
 #include <iostream>
 
 
@@ -16,31 +16,49 @@ using std::cout;
 using std::endl;
 using std::cin;
 /**
- * A Class PID_Controller is defined
+ * @brief PIDController class to implement PID algorithm.
  */
-class PIDController
-{
+class PIDController {
  private:
-  float kp,ki,kd; /**< float variable kp,ki,kd are defined */
+  float kp, ki, kd;  //!< float variable kp,ki,kd are defined */
 
  public:
   /** constructor**/
     PIDController();
     /** destructor**/
     ~PIDController();
-/// @brief define a method which returns double
-/// @param float
-/// @param float
-/// @param int
-/// @return double
-  double compute(float, float,int);
+/**
+ * @brief computes new velocity based on PID algorithm
+ * @param float targetSetpoint
+ * @param float actualVelocity
+ * @param int iterations
+ * @return double new velocity
+ */
+  double compute(float, float, int);
+/**
+ * @brief tells proportional gain of PID controller
+ * @return proportional gain kp
+ */
   double getKp();
+/**
+  * @brief tells differential gain of PID controller
+  * @return differential gain kd
+  */
   double getKd();
+/**
+ * @brief tells intergal gain of PID controller
+ * @return integral gain ki
+ */
   double getKi();
-  void setParamters(float, float,float);//!< a member function.
-
+/**
+ * @brief sets pid parameters kp, ki, kd
+ * @param float kp
+ * @param float ki
+ * @param float kd
+ */
+void setParamters(float, float, float);  //!< a member function.
 };
 
 
 
-#endif /// INCLUDE_PIDCONTROLLER_H_ ///
+#endif  // HW3_CPP_BOILERPLATE_INCLUDE_PIDCONTROLLER_H_"  /// INCLUDE_PIDCONTROLLER_H_ ///

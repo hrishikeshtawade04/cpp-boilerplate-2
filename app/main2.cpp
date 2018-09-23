@@ -1,64 +1,73 @@
 
     /** @file main2.cpp
      *  @copyright Copyright 2018
-     *  @brief      *
-     *  Defines  a class PidController with kp,ki and kd as private member and
-     *  compute and setParamters as methods.
-     *
-     *  It takes target setpoint and actual velocity as two inputs and run the method compute which return a value 10.0
-     *
+     *  @brief
+     *  Shows constructor, destructor, attributes and fucntion implementation of
+     *  class PidController.
      *  @author Saurav Kumar
      *  @author Hrikesh Tawade
      */
 #include <iostream>
 #include "../include/PIDController.h"
 
-
 using std::cout;
 using std::endl;
 using std::cin;
 
-///constructor for class PIDController.
+/// constructor for class PIDController.
 PIDController::PIDController() {
-  kp = 0.0;ki=0.0;kd=0.0;
+kp = 0.0;
+ki = 0.0;
+kd = 0.0;
 }
 /// destructor for class PIDController.
 PIDController::~PIDController() {
 }
-///
-/// @param targetSetpoint
-/// @param actualVelocity
-/// @param int
-/// @return
-double PIDController::compute(float targetSetpoint, float actualVelocity,int iteration)//!< a member function which returns constant 10.0
-  {
-  return 10.0;
+
+/**
+ * @brief computes new velocity based on pid algorithm
+ * @param targetSetpoint the velocity to be reached
+ * @param actualVelocity the current velocity of system
+ * @param iteration number of turns the controller runs
+ * @return new velocity
+ */
+//!< a member function which returns constant 10.0
+double PIDController::compute(float targetSetpoint,
+                              float actualVelocity, int iteration) {
+  return 10.0;  //!< stub implementation
   }
 
   /**
     *
-    * @param kp
-    * @param ki
-    * @param kd
-    * @return null
+    * @param kp proportional gain
+    * @param ki integral gain
+    * @param kd differential gain
+    * @return void
     */
-  void PIDController::setParamters(float kp, float ki,float kd)//!< a member function.
-    {
-     this->kp=kp;
-     this->ki=ki;
-     this->kd=kd;
-
-    }
-double PIDController::getKp()
-{
-  
+//!< a member function.
+  void PIDController::setParamters(float kp, float ki, float kd) {
+     this->kp = kp;
+     this->ki = ki;
+     this->kd = kd;
+  }
+  /**
+   * @brief tells proportional gain of PID controller
+   * @return proportional gain kp
+   */
+double PIDController::getKp() {
   return this->kp;
 }
-double PIDController::getKd()
-{
+/**
+   * @brief tells differential gain of PID controller
+   * @return differential gain kd
+   */
+double PIDController::getKd() {
   return this->kd;
 }
-double PIDController::getKi()
-{
+/**
+   * @brief tells intergal gain of PID controller
+   * @return integral gain ki
+   */
+double PIDController::getKi() {
   return this->ki;
 }

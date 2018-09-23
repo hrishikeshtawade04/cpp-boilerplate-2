@@ -1,11 +1,18 @@
+/** @file test.cpp
+ *  @copyright Copyright 2018
+ *  @brief
+ *  Tests parameterSetting method and compute method
+ *  @author Saurav Kumar
+ *  @author Hrishikesh Tawade
+ */
 #include <gtest/gtest.h>
 #include "PIDController.h"
 
 
 /**
- * Test class initialization
+ * @brief Tests parameterSetting method
  */
-TEST(PIDControllerTest,parameterSetting) {
+TEST(PIDControllerTest, parameterSetting) {
   PIDController instancePID;
   instancePID.setParamters(1.0, 2.0, 3.0);
 
@@ -15,12 +22,11 @@ TEST(PIDControllerTest,parameterSetting) {
 }
 
 /**
- * Test compute method
+ * Tests compute method
  */
 TEST(PIDControllerTest, computeFunctionOutput) {
-
   PIDController instancePID;
   instancePID.setParamters(1.0, 2.0, 3.0);
 
-  EXPECT_EQ(10.0, instancePID.compute(10.0, 1.0,2));
+  EXPECT_EQ(10.0, instancePID.compute(10.0, 1.0, 2));
 }
