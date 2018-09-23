@@ -20,7 +20,7 @@ using std::cin;
 
 ///constructor for class PIDController.
 PIDController::PIDController() {
-  kp = 0;ki=0;kd=0;
+  kp = 0.0;ki=0.0;kd=0.0;
 }
 /// destructor for class PIDController.
 PIDController::~PIDController() {
@@ -49,3 +49,16 @@ double PIDController::compute(float targetSetpoint, float actualVelocity,int ite
      this->kd=kd;
 
     }
+double PIDController::getKp()
+{
+  
+  return this->kp;
+}
+double PIDController::getKd()
+{
+  return this->kd;
+}
+double PIDController::getKi()
+{
+  return this->ki;
+}
