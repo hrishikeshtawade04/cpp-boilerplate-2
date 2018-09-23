@@ -55,19 +55,19 @@ double PIDController::compute(float targetSetpoint,
    * @return proportional gain kp
    */
 double PIDController::getKp() {
-  return this->kp;
+  return 0.0;
 }
 /**
    * @brief tells differential gain of PID controller
    * @return differential gain kd
    */
 double PIDController::getKd() {
-  return this->kd;
+  return 0.0;
 }
 /**
    * @brief tells intergal gain of PID controller
    * @return integral gain ki
    */
 double PIDController::getKi() {
-  return this->ki;
+  return 0.0;
 }
