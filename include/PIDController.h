@@ -34,8 +34,9 @@ class PIDController
 /// @param int
 /// @return double
   double compute(float, float,int);
-
-
+  double getKp();
+  double getKd();
+  double getKi();
   void setParamters(float, float,float);//!< a member function.
 
 };
