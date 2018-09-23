@@ -22,11 +22,24 @@ TEST(PIDControllerTest, parameterSetting) {
 }
 
 /**
- * Tests compute method
+ * @brief Tests convergence of compute method
  */
-TEST(PIDControllerTest, computeFunctionOutput) {
+TEST(PIDControllerTest, convergenceTest) {
   PIDController instancePID;
-  instancePID.setParamters(1.0, 2.0, 3.0);
+  instancePID.setParamters(0.6, 0.1, 3.0);
 
-  EXPECT_EQ(10.0, instancePID.compute(10.0, 1.0, 2));
+  EXPECT_NEAR(15.0, instancePID.compute(15.0, 1.0, 100), 1.0);
+}
+
+/**
+ * @brief Tests bump on compute method
+ */
+
+TEST(PIDControllerTest, bumpTest) {
+  PIDController instancePID;
+  instancePID.setParamters(0.6, 0.1, 3.0);
+  auto newVelocity = 0.0;
+  newVelocity = instancePID.compute(15.0, 1.0, 100);
+
+  EXPECT_NEAR(5.0, instancePID.compute(5.0, newVelocity, 100), 1.0);
 }
