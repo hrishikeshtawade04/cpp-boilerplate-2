@@ -1,6 +1,6 @@
 # C++ Boilerplate
 [![Build Status](https://travis-ci.org/dpiet/cpp-boilerplate.svg?branch=master)](https://travis-ci.org/sauravkdeo/cpp-boilerplate)
-[![Coverage Status](https://coveralls.io/repos/github/dpiet/cpp-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/sauravkdeo/cpp-boilerplate?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/sauravkdeo/cpp-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/sauravkdeo/cpp-boilerplate?branch=master)
 ---
 
 ## Authors of Part 1
