@@ -1,12 +1,11 @@
-
-    /** @file main2.cpp
-     *  @copyright Copyright 2018
-     *  @brief
-     *  Shows constructor, destructor, attributes and fucntion implementation of
-     *  class PidController.
-     *  @author Saurav Kumar
-     *  @author Hrikesh Tawade
-     */
+/** @file main2.cpp
+ *  @copyright Copyright 2018
+ *  @brief
+ *  Shows constructor, destructor, attributes and fucntion implementation of
+ *  class PidController.
+ *  @author Saurav Kumar
+ *  @author Hrikesh Tawade
+ */
 #include <iostream>
 #include "../include/PIDController.h"
 
