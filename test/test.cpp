@@ -26,7 +26,7 @@ TEST(PIDControllerTest, parameterSetting) {
  */
 TEST(PIDControllerTest, convergenceTest) {
   PIDController instancePID;
-  instancePID.setParamters(0.6, 0.1, 3.0);
+  instancePID.setParamters(0.6, 0.1, 0.003);
 
   EXPECT_NEAR(15.0, instancePID.compute(15.0, 1.0, 100), 1.0);
 }
@@ -37,7 +37,7 @@ TEST(PIDControllerTest, convergenceTest) {
 
 TEST(PIDControllerTest, bumpTest) {
   PIDController instancePID;
-  instancePID.setParamters(0.6, 0.1, 3.0);
+  instancePID.setParamters(0.6, 0.1, 0.003);
   auto newVelocity = 0.0;
   newVelocity = instancePID.compute(15.0, 1.0, 100);
 
