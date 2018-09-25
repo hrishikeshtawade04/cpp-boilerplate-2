@@ -19,7 +19,7 @@ Simple PID Controller C++ project with:
 
 - Class Diagram
 <p align="center">
-<a target="_blank"><img src="UML_diagram/UML_ClassDiagramVersion2.png"
+<a target="_blank"><img src="UML_diagram/UML_ClassDiagram_Version3.png"
 alt="NMPC" width="480" height="360" border="10" />
 </a>
 </p>
