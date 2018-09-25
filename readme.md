@@ -6,7 +6,7 @@
 ## Authors of Part 1
 
 - Driver : Saurav Kumar (UID: 116139960) (Github: sauravkdeo )
-- Navigator : Hrishikesh Gopal Tawade (UID: 116078092) (github: hrishikeshtawade04 )
+- Navigator : Hrishikesh Gopal Tawade (UID: 116078092) (Github: hrishikeshtawade04 )
 
 ## Authors of Part 2
 
