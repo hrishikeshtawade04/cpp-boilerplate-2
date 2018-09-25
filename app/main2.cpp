@@ -33,7 +33,23 @@ PIDController::~PIDController() {
 //!< a member function which returns constant 10.0
 double PIDController::compute(double targetSetpoint,
                               double actualVelocity, int iteration) {
-  return 10.0;  //!< stub implementation
+  auto last_error = 0.0;
+  auto error_sum = 0.0;
+  auto dt = 0.1;
+  do {
+    auto new_error = targetSetpoint - actualVelocity;
+    auto error_diff = new_error - last_error;
+    error_sum += dt * new_error;
+    last_error = new_error;
+    auto prop_term = kp_*new_error; ///< Calculated Proportional term
+    auto der_term = kd_*(error_diff/dt); ///< Calculated derivative term
+    auto int_term = ki_*error_sum; ///< Calculated Integral term
+    auto manipulated_variable = int_term + der_term + prop_term;
+    actualVelocity = actualVelocity + manipulated_variable;
+    iteration--;
+  }
+  while(iteration!=0);
+  return actualVelocity;
   }
 
   /**
