@@ -13,7 +13,7 @@ int main() {
   PIDController pidVelocity;  //!< a PID controller to control velocity created
   pidVelocity.setParamters(1.0, 2.0, 3.0);  //!< sets pid parameters
   cout << pidVelocity.getKd() << endl;
-  //!< float variable targetSetpoint and actualVelocity are defined */
+  //!< double variable targetSetpoint and actualVelocity are defined */
   auto targetSetpoint = 0.0, actualVelocity = 0.0;
   auto iteration = 0;  /**< int variable iteration defined */
   cout << "Enter target setpoint of velocity in m/min" << endl;

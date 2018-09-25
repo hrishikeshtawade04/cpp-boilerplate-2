@@ -20,7 +20,7 @@ using std::cin;
  */
 class PIDController {
  private:
-  float kp, ki, kd;  //!< float variable kp,ki,kd are defined */
+  double kp_, ki_, kd_;  //!< double variable kp_,ki__,kd_ are defined */
 
  public:
   /** constructor**/
@@ -29,34 +29,34 @@ class PIDController {
     ~PIDController();
 /**
  * @brief computes new velocity based on PID algorithm
- * @param float targetSetpoint
- * @param float actualVelocity
+ * @param double targetSetpoint
+ * @param double actualVelocity
  * @param int iterations
  * @return double new velocity
  */
-  double compute(float, float, int);
+  double compute(double, double, int);
 /**
  * @brief tells proportional gain of PID controller
- * @return proportional gain kp
+ * @return proportional gain kp_
  */
   double getKp();
 /**
   * @brief tells differential gain of PID controller
-  * @return differential gain kd
+  * @return differential gain kd_
   */
   double getKd();
 /**
  * @brief tells intergal gain of PID controller
- * @return integral gain ki
+ * @return integral gain ki_
  */
   double getKi();
 /**
- * @brief sets pid parameters kp, ki, kd
- * @param float kp
- * @param float ki
- * @param float kd
+ * @brief sets pid parameters kp_, ki_, kd_
+ * @param double kp_
+ * @param double ki_
+ * @param double kd_
  */
-void setParamters(float, float, float);  //!< a member function.
+void setParamters(double, double, double);  //!< a member function.
 };
 
 

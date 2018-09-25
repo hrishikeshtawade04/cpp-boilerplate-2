@@ -15,9 +15,9 @@ using std::cin;
 
 /// constructor for class PIDController.
 PIDController::PIDController() {
-kp = 0.0;
-ki = 0.0;
-kd = 0.0;
+kp_ = 0.0;
+ki_ = 0.0;
+kd_ = 0.0;
 }
 /// destructor for class PIDController.
 PIDController::~PIDController() {
@@ -31,42 +31,42 @@ PIDController::~PIDController() {
  * @return new velocity
  */
 //!< a member function which returns constant 10.0
-double PIDController::compute(float targetSetpoint,
-                              float actualVelocity, int iteration) {
+double PIDController::compute(double targetSetpoint,
+                              double actualVelocity, int iteration) {
   return 10.0;  //!< stub implementation
   }
 
   /**
     *
-    * @param kp proportional gain
-    * @param ki integral gain
-    * @param kd differential gain
+    * @param kp_ proportional gain
+    * @param ki_ integral gain
+    * @param kd_ differential gain
     * @return void
     */
 //!< a member function.
-  void PIDController::setParamters(float kp, float ki, float kd) {
-     this->kp = kp;
-     this->ki = ki;
-     this->kd = kd;
+  void PIDController::setParamters(double kp_, double ki_, double kd_) {
+     this->kp_ = kp_;
+     this->ki_ = ki_;
+     this->kd_ = kd_;
   }
   /**
    * @brief tells proportional gain of PID controller
-   * @return proportional gain kp
+   * @return proportional gain kp_
    */
 double PIDController::getKp() {
-  return 0.0;
+  return this->kp_;
 }
 /**
    * @brief tells differential gain of PID controller
-   * @return differential gain kd
+   * @return differential gain kd_
    */
 double PIDController::getKd() {
-  return 0.0;
+  return this->kd_;
 }
 /**
    * @brief tells intergal gain of PID controller
-   * @return integral gain ki
+   * @return integral gain ki_
    */
 double PIDController::getKi() {
-  return 0.0;
+  return this->ki_;
 }
