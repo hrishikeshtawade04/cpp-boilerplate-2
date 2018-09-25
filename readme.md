@@ -19,14 +19,14 @@ Simple PID Controller C++ project with:
 
 - Class Diagram
 <p align="center">
-<a target="_blank"><img src="UML_Cpp-Boilerplate.png"
+<a target="_blank"><img src="UML_diagram/UML_ClassDiagramVersion2.png"
 alt="NMPC" width="480" height="360" border="10" />
 </a>
 </p>
 
 - Activity Diagram for compute function
 <p align="center">
-<a target="_blank"><img src="Compute_function_activity_diagram.png"
+<a target="_blank"><img src="UML_diagram/Compute_function_activity_diagram.png"
 alt="NMPC" width="480" height="640" border="10" />
 </a>
 </p>
@@ -35,14 +35,14 @@ alt="NMPC" width="480" height="640" border="10" />
 
 - Expected convergence test performance
 <p align="center">
-<a target="_blank"><img src="PID_expected_output.png"
+<a target="_blank"><img src="expectedTestOutput/PID_expected_output.png"
 alt="NMPC" width="480" height="360" border="10" />
 </a>
 </p>
 
 - Expected bump test performance
 <p align="center">
-<a target="_blank"><img src="pid_bumptest.png"
+<a target="_blank"><img src="expectedTestOutput/pid_bumptest.png"
 alt="NMPC" width="480" height="640" border="10" />
 </a>
 </p>
