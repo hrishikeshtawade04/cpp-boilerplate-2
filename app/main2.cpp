@@ -36,22 +36,20 @@ double PIDController::compute(double targetSetpoint,
   auto last_error = 0.0;
   auto error_sum = 0.0;
   auto dt = 0.1;
-  auto new_velocity = 0.0;
   do {
     auto new_error = targetSetpoint - actualVelocity;
     auto error_diff = new_error - last_error;
     error_sum += dt * new_error;
     last_error = new_error;
-    auto prop_term = kp_*new_error;
-    auto der_term = kd_*(error_diff/dt);
-    auto int_term = ki_*error_sum;
+    auto prop_term = kp_*new_error; ///< Calculated Proportional term
+    auto der_term = kd_*(error_diff/dt); ///< Calculated derivative term
+    auto int_term = ki_*error_sum; ///< Calculated Integral term
     auto manipulated_variable = int_term + der_term + prop_term;
-    new_velocity = actualVelocity + manipulated_variable;
-    actualVelocity = new_velocity;
+    actualVelocity = actualVelocity + manipulated_variable;
     iteration--;
   }
   while(iteration!=0);
-  return new_velocity;
+  return actualVelocity;
   }
 
   /**
