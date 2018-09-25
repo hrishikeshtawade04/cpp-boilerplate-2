@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/saurav/HW3/cpp-boilerplate/app/main.cpp
+iostream
+-
+../include/PIDController.h
+/home/saurav/HW3/cpp-boilerplate/include/PIDController.h
+
+/home/saurav/HW3/cpp-boilerplate/app/main2.cpp
+iostream
+-
+../include/PIDController.h
+/home/saurav/HW3/cpp-boilerplate/include/PIDController.h
+
+/home/saurav/HW3/cpp-boilerplate/include/PIDController.h
+iostream
+-
+
