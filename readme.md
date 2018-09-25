@@ -8,6 +8,11 @@
 - Driver : Saurav Kumar
 - Navigator : Hrishikesh Gopal Tawade
 
+## Authors of Part 2
+
+- Driver: Ashish Patel (UID: 115730625) (GitHub: Learner1729)
+- Navigator: Yash Shah (UID: 115710498) (GitHub: ysshah95)
+
 ## Overview
 
 Simple PID Controller C++ project with:
