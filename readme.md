@@ -5,8 +5,8 @@
 
 ## Authors of Part 1
 
-- Driver : Saurav Kumar
-- Navigator : Hrishikesh Gopal Tawade
+- Driver : Saurav Kumar (UID: 116139960) (Github: sauravkdeo )
+- Navigator : Hrishikesh Gopal Tawade (UID: 116078092) (github: hrishikeshtawade04 )
 
 ## Authors of Part 2
 
@@ -20,8 +20,21 @@ Simple PID Controller C++ project with:
 - cmake
 - googletest
 
-## UML Diagrams
+## Notes
+- This repository implements a simple PID control algorithm which takes in target velocity, initial velocity and number of iterations as inputs and returns final velocity as output for the given kp, ki and kd parameters set by the user.
+- The user can use this implementation to check whether the a PID controller converges for a given number of iterations and PID parameters.
 
+## TODO List
+The following to-do list was made after team discussion and of comments based on other teams:
+- Use inline constructor feature used in c++11.
+- PID algorithm variables like error sum and difference in error should be class variables instead of local method variables to retain there values.
+  This will facilitate easy integration with other classes and control loops in main function.
+- There should be a test which asserts time difference dt should not be equal to zero.
+- The code should include condition to return an error value to notify that dt is set to zero which is not acceptable.
+- Edit the main function to remove stub implementations.
+- The test for convergence and bump should replace the expected value mentioned as constant directly with the targetValue variable.
+
+## UML Diagrams
 - Class Diagram
 <p align="center">
 <a target="_blank"><img src="UML_diagram/UML_ClassDiagram_Version3.png"
