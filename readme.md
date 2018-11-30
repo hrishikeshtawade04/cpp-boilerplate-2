@@ -1,17 +1,7 @@
 # C++ Boilerplate
-[![Build Status](https://travis-ci.org/sauravkdeo/cpp-boilerplate.svg?branch=master)](https://travis-ci.org/sauravkdeo/cpp-boilerplate)
-[![Coverage Status](https://coveralls.io/repos/github/sauravkdeo/cpp-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/sauravkdeo/cpp-boilerplate?branch=master)
+[![Build Status](https://travis-ci.org/sauravkdeo/cpp-boilerplate.svg?branch=GMock_Extra_Credit_Hrishikesh_Tawade)](https://travis-ci.org/hrishikeshtawade04/cpp-boilerplate-2)
+[![Coverage Status](https://coveralls.io/repos/github/sauravkdeo/cpp-boilerplate/badge.svg?branch=GMock_Extra_Credit_Hrishikesh_Tawade)](https://coveralls.io/github/hrishikeshtawade04/cpp-boilerplate-2?branch=GMock_Extra_Credit_Hrishikesh_Tawade)
 ---
-
-## Authors of Part 1
-
-- Driver : Saurav Kumar (UID: 116139960) (Github: sauravkdeo )
-- Navigator : Hrishikesh Gopal Tawade (UID: 116078092) (Github: hrishikeshtawade04 )
-
-## Authors of Part 2
-
-- Driver: Ashish Patel (UID: 115730625) (GitHub: Learner1729)
-- Navigator: Yash Shah (UID: 115710498) (GitHub: ysshah95)
 
 ## Overview
 
@@ -19,32 +9,36 @@ Simple PID Controller C++ project with:
 
 - cmake
 - googletest
+- googlemock
 
+## Installing CMAKE
+You can install CMAKE by going on this [LINK](https://cmake.org/install/).
+
+## Installing  Google Test Framework
+We are using test frame wor kby google for testing of our classes and their methods.
+You can install Google Test Framework by going on this  [LINK](https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/).
+
+## Installing  Google Mock
+We are using the Google Mock Framework with the Google Test Framework to create mock clases and unit test there parent classes.
+```
+ sudo apt-get install -y google-mock
+ ```
 ## Notes
 - This repository implements a simple PID control algorithm which takes in target velocity, initial velocity and number of iterations as inputs and returns final velocity as output for the given kp, ki and kd parameters set by the user.
-- The user can use this implementation to check whether the a PID controller converges for a given number of iterations and PID parameters.
-
-## TODO List
-The following to-do list was made after team discussion and of comments based on other teams:
-- Use inline constructor feature used in c++11.
-- PID algorithm variables like error sum and difference in error should be class variables instead of local method variables to retain there values.
-  This will facilitate easy integration with other classes and control loops in main function.
-- There should be a test which asserts time difference dt should not be equal to zero.
-- The code should include condition to return an error value to notify that dt is set to zero which is not acceptable.
-- Edit the main function to remove stub implementations.
-- The test for convergence and bump should replace the expected value mentioned as constant directly with the targetValue variable.
+- The user can use this implementation to check whether the PID controller converges for the given number of iterations.
 
 ## UML Diagrams
+The  UML Diagrams are as follows.
 - Class Diagram
 <p align="center">
-<a target="_blank"><img src="UML_diagram/UML_ClassDiagram_Version3.png"
+<a target="_blank"><img src="Readme_Images/Activity_Diagram_PIDController.png"
 alt="NMPC" width="480" height="360" border="10" />
 </a>
 </p>
 
 - Activity Diagram for compute function
 <p align="center">
-<a target="_blank"><img src="UML_diagram/Compute_function_activity_diagram.png"
+<a target="_blank"><img src="Readme_Images/Class_Diagram_PID .png"
 alt="NMPC" width="480" height="640" border="10" />
 </a>
 </p>
@@ -53,129 +47,83 @@ alt="NMPC" width="480" height="640" border="10" />
 
 - Expected convergence test performance
 <p align="center">
-<a target="_blank"><img src="expectedTestOutput/PID_expected_output.png"
+<a target="_blank"><img src="Readme_Images/PID_expected_output.png"
 alt="NMPC" width="480" height="360" border="10" />
 </a>
 </p>
 
 - Expected bump test performance
 <p align="center">
-<a target="_blank"><img src="expectedTestOutput/pid_bumptest.png"
+<a target="_blank"><img src="Readme_Images/pid_bumptest.png"
 alt="NMPC" width="480" height="640" border="10" />
 </a>
 </p>
 
 ## Standard install via command-line
 ```
-git clone --recursive https://github.com/dpiet/cpp-boilerplate
+git clone -b GMock_Extra_Credit_Hrishikesh_Tawade https://github.com/hrishikeshtawade04/cpp-boilerplate-2.git
 cd <path to repository>
 mkdir build
 cd build
 cmake ..
 make
-Run tests: ./test/cpp-test
-Run program: ./app/shell-app
+```
+## Program running command
+Enter following command to run the PID controller program.
+```
+./app/shell-app
+```
+## Using Google Mock
+There are two classes in the program namely PIDController class and the Parameters Class. The PIDController Class consumes Parameters class to get Kp, Ki and Kd which the Parameters class provides. So in order to carryout the unit test of class PIDController I have mocked the Parameters class wherein the interface is rigorously tested using following features. The mocked class can be seen below.
+```
+class MockParameters : public Parameters {
+ public:
+  MOCK_METHOD0(getKp, double());
+  MOCK_METHOD0(getKd, double());
+  MOCK_METHOD0(getKi, double());
+};
+```
+The MOCK_METHOD(n) specifies the methods to be mocked wherein the n denotes the number of arguments to be passed to the method. The first argument of MOCK_METHOD is the method name and second is the method return type.
+
+Below is an example of the convergence test of PIDController. In this case 'para' is the object of mocked Parameters class.The mocked class can be seen in below code.It has been passed to the instancePID object of PIDController class. The "EXPECT_CALL" command expects the getKp(),getKi(), and getKd() to be called exactly 100 times and will return values specified in Return section. Thus the tests are made stringent.
+
+```
+TEST(PIDControllerTest, convergenceTest) {
+  MockParameters para;
+  EXPECT_CALL(para, getKp())  /// #1
+      .Times(100).WillRepeatedly(Return(0.6));
+  EXPECT_CALL(para, getKi())  /// #2
+      .Times(100).WillRepeatedly(Return(0.1));
+  EXPECT_CALL(para, getKd())  /// #3
+      .Times(100).WillRepeatedly(Return(0.003));
+  PIDController instancePID(&para);
+  EXPECT_NEAR(15.0, instancePID.compute(15.0, 1.0, 100), 1.0);
+}
 ```
 
-## Building for code coverage (for assignments beginning in Week 4)
+## Test running commands
+Running the following command you can test the 2 unit tests running on PIDController Class.
 ```
-sudo apt-get install lcov
-cmake -D COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug ../
+cd <path to build folder>
+./test/cpp-test
+```
+## Generating Doxygen Documentation
+```
+sudo apt-get install flex
+git clone https://github.com/doxygen/doxygen.git
+cd doxygen
+mkdir build
+cd build
+cmake -G "Unix Makefiles" ..
 make
-make code_coverage
+sudo make install
 ```
-This generates a index.html page in the build/coverage sub-directory that can be viewed locally in a web browser.
-
-## Working with Eclipse IDE ##
-
-## Installation
-
-In your Eclipse workspace directory (or create a new one), checkout the repo (and submodules)
+After installation run following command to generate the doxygen configuration file.
 ```
-mkdir -p ~/workspace
-cd ~/workspace
-git clone --recursive https://github.com/dpiet/cpp-boilerplate
+cd <path to repository>
+doxygen -g <config_file>
 ```
-
-In your work directory, use cmake to create an Eclipse project for an [out-of-source build] of cpp-boilerplate
-
+Finally run the following command to generate doxygen documentation.
 ```
-cd ~/workspace
-mkdir -p boilerplate-eclipse
-cd boilerplate-eclipse
-cmake -G "Eclipse CDT4 - Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug -D CMAKE_ECLIPSE_VERSION=4.7.0 -D CMAKE_CXX_COMPILER_ARG1=-std=c++14 ../cpp-boilerplate/
+doxygen <config_file>
 ```
-
-## Import
-
-Open Eclipse, go to File -> Import -> General -> Existing Projects into Workspace ->
-Select "boilerplate-eclipse" directory created previously as root directory -> Finish
-
-# Edit
-
-Source files may be edited under the "[Source Directory]" label in the Project Explorer.
-
-
-## Build
-
-To build the project, in Eclipse, unfold boilerplate-eclipse project in Project Explorer,
-unfold Build Targets, double click on "all" to build all projects.
-
-## Run
-
-1. In Eclipse, right click on the boilerplate-eclipse in Project Explorer,
-select Run As -> Local C/C++ Application
-
-2. Choose the binaries to run (e.g. shell-app, cpp-test for unit testing)
-
-
-## Debug
-
-
-1. Set breakpoint in source file (i.e. double click in the left margin on the line you want
-the program to break).
-
-2. In Eclipse, right click on the boilerplate-eclipse in Project Explorer, select Debug As ->
-Local C/C++ Application, choose the binaries to run (e.g. shell-app).
-
-3. If prompt to "Confirm Perspective Switch", select yes.
-
-4. Program will break at the breakpoint you set.
-
-5. Press Step Into (F5), Step Over (F6), Step Return (F7) to step/debug your program.
-
-6. Right click on the variable in editor to add watch expression to watch the variable in
-debugger window.
-
-7. Press Terminate icon to terminate debugging and press C/C++ icon to switch back to C/C++
-perspetive view (or Windows->Perspective->Open Perspective->C/C++).
-
-
-## Plugins
-
-- CppChEclipse
-
-    To install and run cppcheck in Eclipse
-
-    1. In Eclipse, go to Window -> Preferences -> C/C++ -> cppcheclipse.
-    Set cppcheck binary path to "/usr/bin/cppcheck".
-
-    2. To run CPPCheck on a project, right click on the project name in the Project Explorer
-    and choose cppcheck -> Run cppcheck.
-
-
-- Google C++ Sytle
-
-    To include and use Google C++ Style formatter in Eclipse
-
-    1. In Eclipse, go to Window -> Preferences -> C/C++ -> Code Style -> Formatter.
-    Import [eclipse-cpp-google-style][reference-id-for-eclipse-cpp-google-style] and apply.
-
-    2. To use Google C++ style formatter, right click on the source code or folder in
-    Project Explorer and choose Source -> Format
-
-[reference-id-for-eclipse-cpp-google-style]: https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-cpp-google-style.xml
-
-- Git
-
-    It is possible to manage version control through Eclipse and the git plugin, but it typically requires creating another project. If you're interested in this, try it out yourself and contact me on Canvas.
