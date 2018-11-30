@@ -68,10 +68,9 @@ TEST(PIDControllerTest, convergenceTest) {
   EXPECT_CALL(para, getKi())  /// #2
       .Times(100).WillRepeatedly(Return(0.1));
   EXPECT_CALL(para, getKd())  /// #3
-      .Times(100).WillRepeatedly(Return(0.003)); 
+      .Times(100).WillRepeatedly(Return(0.003));
   PIDController instancePID(&para);
   EXPECT_NEAR(15.0, instancePID.compute(15.0, 1.0, 100), 1.0);
-
 }
 
 /**
