@@ -47,7 +47,7 @@
 using ::testing::AtLeast;
 using ::testing::_;
 using ::testing::Return;
-
+using ::testing::Sequence;
 /**
  * @brief Mock of class Parameters
  */
@@ -64,13 +64,14 @@ class MockParameters : public Parameters {
 TEST(PIDControllerTest, convergenceTest) {
   MockParameters para;
   EXPECT_CALL(para, getKp())  /// #1
-      .Times(AtLeast(1)).WillRepeatedly(Return(0.6));
+      .Times(100).WillRepeatedly(Return(0.6));
   EXPECT_CALL(para, getKi())  /// #2
-      .Times(AtLeast(1)).WillRepeatedly(Return(0.1));
+      .Times(100).WillRepeatedly(Return(0.1));
   EXPECT_CALL(para, getKd())  /// #3
-      .Times(AtLeast(1)).WillRepeatedly(Return(0.003));
+      .Times(100).WillRepeatedly(Return(0.003)); 
   PIDController instancePID(&para);
   EXPECT_NEAR(15.0, instancePID.compute(15.0, 1.0, 100), 1.0);
+
 }
 
 /**
@@ -80,11 +81,11 @@ TEST(PIDControllerTest, convergenceTest) {
 TEST(PIDControllerTest, bumpTest) {
   MockParameters para;
   EXPECT_CALL(para, getKp())  /// #1
-      .Times(AtLeast(1)).WillRepeatedly(Return(0.6));
+      .Times(200).WillRepeatedly(Return(0.6));
   EXPECT_CALL(para, getKi())  /// #2
-      .Times(AtLeast(1)).WillRepeatedly(Return(0.1));
+      .Times(200).WillRepeatedly(Return(0.1));
   EXPECT_CALL(para, getKd())  /// #3
-      .Times(AtLeast(1)).WillRepeatedly(Return(0.003));
+      .Times(200).WillRepeatedly(Return(0.003));
   PIDController instancePID(&para);
   auto newVelocity = 0.0;
   newVelocity = instancePID.compute(15.0, 1.0, 100);
