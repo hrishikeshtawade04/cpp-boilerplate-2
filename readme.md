@@ -32,14 +32,14 @@ The  UML Diagrams are as follows.
 - Class Diagram
 <p align="center">
 <a target="_blank"><img src="Readme_Images/Activity_Diagram_PIDController.png"
-alt="NMPC" width="480" height="360" border="10" />
+alt="NMPC" width="480" height="900" border="10" />
 </a>
 </p>
 
 - Activity Diagram for compute function
 <p align="center">
 <a target="_blank"><img src="Readme_Images/Class_Diagram_PID .png"
-alt="NMPC" width="480" height="640" border="10" />
+alt="NMPC" width="480" height="300" border="10" />
 </a>
 </p>
 
