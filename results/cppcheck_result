@@ -1,7 +1,0 @@
-./app/main2.cpp:51:  Empty loop bodies should use {} or continue  [whitespace/empty_loop_body] [5]    Comment : False error for do while loop
-Done processing ./app/main2.cpp
-Done processing ./app/main.cpp
-Done processing ./test/main.cpp
-Done processing ./test/test.cpp
-Total errors found: 1
-

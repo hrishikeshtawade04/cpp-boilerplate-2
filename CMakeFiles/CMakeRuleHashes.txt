@@ -1,2 +1,0 @@
-# Hashes of file build rules.
-aaf84cc863dbbc3630f66a4045812ab3 CMakeFiles/code_coverage
