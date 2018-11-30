@@ -26,43 +26,58 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  @copyright (c) BSD
  *
- *  @file    main.cpp
+ *  @file    PIDController.cpp
  *
  *  @author  Hrishikesh Tawade
  *
  *  @copyright BSD License
  *
- *  @brief Runs PID controller
+ *  @brief PIDController Class implementation
  *
  *  @section DESCRIPTION
- *
- *  This program starts the robot
+ *   
+ *  This Class implements the PID algorithm to control velocity.
  */
 #include <iostream>
 #include "../include/PIDController.h"
-#include "../include/Parameters.h"
-using std::cin;
-using std::endl;
 using std::cout;
-int main() {
-  /// Creating Paramter object
-  Parameters para;
-  /// PID controller to control velocity created
-  PIDController pidVelocity(&para);
-  auto targetSetpoint = 0.0, actualVelocity = 0.0;
-  auto iteration = 0;
-  /// Asking target velocity to user
-  cout << "Enter target setpoint of velocity in m/min" << endl;
-  cin >> targetSetpoint;
-  /// Asking actual velocity to user
-  cout << "Enter actual velocity in m/min" << endl;
-  cin >> actualVelocity;
-  /// Asking number of iterations to user
-  cout << "Enter the number of iteration" << endl;
-  cin >> iteration;
-  /// Controlling velocity using PID controller
-  cout << "New Velocity = "
-      << pidVelocity.compute(targetSetpoint, actualVelocity, iteration) << endl;
-  return 0;
+using std::endl;
+using std::cin;
+
+PIDController::~PIDController() {
 }
+
+double PIDController::compute(double targetSetpoint, double actualVelocity,
+                              int iteration) {
+  auto last_error = 0.0;
+  auto error_sum = 0.0;
+  auto dt = 0.1;
+  /// Controlling given velocity using PID algorithm
+  /// for given number of iterations
+  do {
+    auto new_error = targetSetpoint - actualVelocity;
+    auto error_diff = new_error - last_error;
+    error_sum += dt * new_error;
+    last_error = new_error;
+    getParameters();
+    /// Calculated Proportional term
+    auto prop_term = kp_ * new_error;
+    /// Calculated derivative term
+    auto der_term = kd_ * (error_diff / dt);
+    /// Calculated Integral term
+    auto int_term = ki_ * error_sum;
+    auto manipulated_variable = int_term + der_term + prop_term;
+    actualVelocity = actualVelocity + manipulated_variable;
+    iteration--;
+  } while (iteration != 0);
+  return actualVelocity;
+}
+
+void PIDController::getParameters() {
+  /// Using Paramters class object to set PID paramters
+  kp_ = parameter->getKp();
+  ki_ = parameter->getKi();
+  kd_ = parameter->getKd();
+}
+
 

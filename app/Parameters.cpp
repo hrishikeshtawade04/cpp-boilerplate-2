@@ -26,43 +26,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  @copyright (c) BSD
  *
- *  @file    main.cpp
+ *  @file    Parameters.cpp
  *
  *  @author  Hrishikesh Tawade
  *
  *  @copyright BSD License
  *
- *  @brief Runs PID controller
+ *  @brief Parameters Class implementation
  *
  *  @section DESCRIPTION
  *
- *  This program starts the robot
+ *  This Class implements methods to provide PID parameters
  */
 #include <iostream>
-#include "../include/PIDController.h"
 #include "../include/Parameters.h"
-using std::cin;
-using std::endl;
-using std::cout;
-int main() {
-  /// Creating Paramter object
-  Parameters para;
-  /// PID controller to control velocity created
-  PIDController pidVelocity(&para);
-  auto targetSetpoint = 0.0, actualVelocity = 0.0;
-  auto iteration = 0;
-  /// Asking target velocity to user
-  cout << "Enter target setpoint of velocity in m/min" << endl;
-  cin >> targetSetpoint;
-  /// Asking actual velocity to user
-  cout << "Enter actual velocity in m/min" << endl;
-  cin >> actualVelocity;
-  /// Asking number of iterations to user
-  cout << "Enter the number of iteration" << endl;
-  cin >> iteration;
-  /// Controlling velocity using PID controller
-  cout << "New Velocity = "
-      << pidVelocity.compute(targetSetpoint, actualVelocity, iteration) << endl;
-  return 0;
+
+
+Parameters::Parameters() {
+}
+
+Parameters::~Parameters() {
+}
+
+double Parameters::getKp() {
+  return 0.6;  /// kp;
+}
+
+double Parameters::getKd() {
+  return 0.003;  /// kd;
+}
+
+double Parameters::getKi() {
+  return 0.1;  /// ki_;
 }
 
