@@ -1,7 +1,11 @@
 # C++ Boilerplate
+<p align="center">
+ 
 [![Build Status](https://travis-ci.org/sauravkdeo/cpp-boilerplate.svg?branch=GMock_Extra_Credit_Hrishikesh_Tawade)](https://travis-ci.org/hrishikeshtawade04/cpp-boilerplate-2)
 [![Coverage Status](https://coveralls.io/repos/github/sauravkdeo/cpp-boilerplate/badge.svg?branch=GMock_Extra_Credit_Hrishikesh_Tawade)](https://coveralls.io/github/hrishikeshtawade04/cpp-boilerplate-2?branch=GMock_Extra_Credit_Hrishikesh_Tawade)
----
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
+</p>
 
 ## Overview
 
