@@ -26,60 +26,44 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  @copyright (c) BSD
  *
- *  @file    PIDController.h
+ *  @file    Parameters.h
  *
  *  @author  Hrishikesh Tawade
  *
  *  @copyright BSD License
  *
- *  @brief Library for PID Controller
+ *  @brief Library for Paramters Class
  *
  *  @section DESCRIPTION
  *
- *  This library contains the declarations for the class PIDController
+ *  This library contains the declarations for the class Parameters
  */
 
-#ifndef INCLUDE_PIDCONTROLLER_H_
-#define INCLUDE_PIDCONTROLLER_H_
+#ifndef INCLUDE_PARAMETERS_H_
+#define INCLUDE_PARAMETERS_H_
 #include <iostream>
-#include "../include/Parameters.h"
 
-/**
- * @brief PIDController class to implement PID algorithm.
- */
-class PIDController {
- private:
-  /// Object of Parameter class
-  Parameters* parameter;
-  /// PID parameters
-  double kp_;
-  double ki_;
-  double kd_;
-
+class Parameters {
  public:
-  /// constructor
-  explicit PIDController(Parameters* para)
-      : parameter(para) {
-    kp_ = 0.0;
-    ki_ = 0.0;
-    kd_ = 0.0;
-  }
-  /// destructor
-  ~PIDController();
+  /// Constructor
+  Parameters();
+  /// Destructor
+  virtual ~Parameters();
   /**
-   * @brief computes new velocity based on PID algorithm
-   * @param double targetSetpoint
-   * @param double actualVelocity
-   * @param int iterations
-   * @return double new velocity
+   * @brief tells proportional gain of PID controller
+   * @return proportional gain kp
    */
-  double compute(double, double, int);
-    /**
-     * @brief gets kp, ki, kd from Paramters class
-     * @return nothing
-     */
-  void getParameters();
+  virtual double getKp();
+  /**
+   * @brief tells differential gain of PID controller
+   * @return differential gain kd
+   */
+  virtual double getKd();
+/**
+   * @brief tells intergal gain of PID controller
+   * @return integral gain ki
+ */
+  virtual double getKi();
 };
-
-#endif  // INCLUDE_PIDCONTROLLER_H_"
+#endif  // INCLUDE_PARAMETERS_H_"
 
